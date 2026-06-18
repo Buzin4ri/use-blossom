@@ -1,0 +1,46 @@
+{
+  "produtos": [
+    {
+      "nome": "Anel Coração Cravejado",
+      "preco": "89,90",
+      "descricao": "Anel delicado com coração em zircônias, banhado a ouro 18k.",
+      "imagem": "images/produto-anel-coracao.jpg",
+      "selo": "Mais vendido"
+    },
+    {
+      "nome": "Brinco Borboleta Gold",
+      "preco": "49,90",
+      "descricao": "Par de brincos borboleta minimalistas — leveza e charme no dia a dia.",
+      "imagem": "images/produto-brinco-borboleta.jpg",
+      "selo": ""
+    },
+    {
+      "nome": "Brinco Estrela Cintilante",
+      "preco": "49,90",
+      "descricao": "Estrelinhas que iluminam o rosto. Perfeitas para usar todos os dias.",
+      "imagem": "images/produto-brinco-estrela.jpg",
+      "selo": ""
+    },
+    {
+      "nome": "Brinco Coração Cravejado",
+      "preco": "54,90",
+      "descricao": "Coração pavê em zircônias com muito brilho e acabamento impecável.",
+      "imagem": "images/produto-brinco-coracao.jpg",
+      "selo": "Novidade"
+    },
+    {
+      "nome": "Anel Inicial Personalizado",
+      "preco": "69,90",
+      "descricao": "Seu charme com a sua inicial. Anel de selo elegante e atemporal.",
+      "imagem": "images/produto-anel-inicial.jpg",
+      "selo": ""
+    },
+    {
+      "nome": "Kit Anéis Luxo",
+      "preco": "199,90",
+      "descricao": "Seleção com 6 anéis para montar combinações sofisticadas.",
+      "imagem": "images/produto-kit-aneis.jpg",
+      "selo": "Kit luxo"
+    }
+  ]
+}

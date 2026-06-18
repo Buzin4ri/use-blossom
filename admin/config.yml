@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Idioma do painel
+locale: "pt"
+
+# Onde as fotos enviadas pelo painel são salvas
+media_folder: "images"
+public_folder: "images"
+
+# Mensagens em português
+publish_mode: simple
+
+collections:
+  # ---------- PRODUTOS ----------
+  - name: "loja"
+    label: "🛍️ Produtos"
+    description: "Adicione, edite ou remova os produtos da vitrine."
+    files:
+      - name: "produtos"
+        label: "Lista de produtos"
+        file: "products.json"
+        description: "Arraste para reordenar. Clique em + para adicionar um produto."
+        fields:
+          - name: "produtos"
+            label: "Produtos"
+            label_singular: "Produto"
+            widget: "list"
+            summary: "{{fields.nome}} — R$ {{fields.preco}}"
+            fields:
+              - { name: "nome", label: "Nome do produto", widget: "string" }
+              - { name: "preco", label: "Preço (ex: 89,90)", widget: "string", hint: "Use vírgula. Não escreva R$." }
+              - { name: "descricao", label: "Descrição curta", widget: "text" }
+              - { name: "imagem", label: "Foto do produto", widget: "image" }
+              - { name: "selo", label: "Selo (ex: Novidade, Mais vendido)", widget: "string", required: false, hint: "Opcional. Deixe vazio para não mostrar selo." }
+
+  # ---------- CONFIGURAÇÕES ----------
+  - name: "config"
+    label: "⚙️ Contato da loja"
+    description: "WhatsApp e Instagram usados nos botões do site."
+    files:
+      - name: "settings"
+        label: "WhatsApp e Instagram"
+        file: "settings.json"
+        fields:
+          - { name: "whatsapp", label: "WhatsApp", widget: "string", hint: "Só números, com 55 e DDD. Ex: 5511969095915" }
+          - { name: "instagram", label: "Instagram", widget: "string", hint: "Só o usuário, sem @. Ex: useblossom._" }

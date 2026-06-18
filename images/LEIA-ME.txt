@@ -1,0 +1,37 @@
+=========================================================
+  USE BLOSSOM — PASTA DE IMAGENS
+=========================================================
+
+Coloque suas fotos NESTA pasta (images/) com EXATAMENTE
+estes nomes de arquivo. O site já está apontando para eles.
+
+Se faltar alguma imagem, o site mostra um fundo elegante
+no lugar (não quebra). Mas o ideal é colocar todas. :)
+
+---------------------------------------------------------
+ARQUIVO                              QUAL FOTO USAR
+---------------------------------------------------------
+logo.png                  -> A logo "Use Blossom" (fundo marrom)
+hero.jpg                  -> A selfie no espelho (mãos com anéis)
+produto-anel-coracao.jpg  -> O anel de coração cravejado
+produto-brinco-borboleta.jpg -> Os brincos borboleta (cartela lilás)
+produto-brinco-estrela.jpg   -> Os brincos estrela (cartela lilás)
+produto-brinco-coracao.jpg   -> Os brincos coração cravejado (lilás)
+produto-anel-inicial.jpg  -> O anel de selo com inicial
+produto-kit-aneis.jpg     -> A caixa com vários anéis dourados
+colecao.jpg               -> Foto bonita p/ banner (a caixa de anéis
+                             ou a foto da mão com anéis)
+---------------------------------------------------------
+
+DICAS:
+- Use .jpg para fotos e .png para a logo (com fundo).
+- Formato quadrado (1:1) fica perfeito nos cards de produto.
+- Para a logo do cabeçalho/rodapé, se tiver versão com fundo
+  transparente fica ainda melhor — mas a versão marrom também
+  funciona porque o cabeçalho é escuro.
+
+COMO RENOMEAR NO WINDOWS:
+1. Salve a foto nesta pasta.
+2. Clique com o botão direito > Renomear.
+3. Digite o nome da tabela acima (com a extensão .jpg/.png).
+=========================================================

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Use Blossom — Acessórios femininos delicados e sofisticados. Peças banhadas a ouro que transformam qualquer look." />
+  <title>Use Blossom · Acessórios que florescem em você</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="brand">
+        <img src="images/logo.png" alt="Use Blossom Acessórios" class="brand__logo" onerror="this.style.display='none'" />
+        <span class="brand__fallback">
+          <span class="brand__name">Use Blossom</span>
+          <span class="brand__tag">Acessórios</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#inicio" class="nav__link">Início</a>
+        <a href="#produtos" class="nav__link">Produtos</a>
+        <a href="#colecao" class="nav__link">Coleção</a>
+        <a href="#depoimentos" class="nav__link">Clientes</a>
+        <a href="#contato" class="nav__link">Contato</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#produtos" data-wa data-msg="Olá! Quero comprar um acessório Use Blossom"
+           class="btn btn--gold header__cta" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.4-8.3zM12 21.4c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.5 9.5 0 0 1-1.5-5.1c0-5.3 4.3-9.6 9.7-9.6 2.6 0 5 1 6.8 2.8a9.5 9.5 0 0 1 2.8 6.8c0 5.3-4.3 9.7-9.8 9.7zm5.3-7.2c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+          Comprar
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="inicio">
+    <div class="container hero__inner">
+      <div class="hero__content reveal">
+        <span class="eyebrow">✦ Coleção 2026 · Banhado a ouro 18k</span>
+        <h1 class="hero__title">Acessórios que <em>florescem</em> em você</h1>
+        <p class="hero__subtitle">
+          Peças delicadas, sofisticadas e atemporais para mulheres marcantes.
+          Acabamento premium, brilho que dura e aquele toque de elegância no seu dia a dia.
+        </p>
+        <div class="hero__actions">
+          <a href="#produtos" class="btn btn--gold btn--lg">Comprar agora</a>
+          <a href="#colecao" class="btn btn--ghost btn--lg">Ver coleção</a>
+        </div>
+        <div class="hero__trust">
+          <div><strong>+5 mil</strong><span>clientes felizes</span></div>
+          <div><strong>Pronta</strong><span>entrega</span></div>
+          <div><strong>Envio</strong><span>para todo Brasil</span></div>
+        </div>
+      </div>
+
+      <div class="hero__media reveal">
+        <div class="hero__image" style="background-image:url('images/hero.jpg')"></div>
+        <span class="hero__badge">✦ Novidade</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DIFERENCIAIS ===================== -->
+  <section class="features">
+    <div class="container features__grid">
+      <article class="feature reveal">
+        <span class="feature__icon">✦</span>
+        <h3>Acabamento premium</h3>
+        <p>Banho de ouro 18k antialérgico que não escurece e mantém o brilho por muito mais tempo.</p>
+      </article>
+      <article class="feature reveal">
+        <span class="feature__icon">❤</span>
+        <h3>Peças selecionadas</h3>
+        <p>Cada acessório é escolhido a dedo para combinar delicadeza, sofisticação e tendência.</p>
+      </article>
+      <article class="feature reveal">
+        <span class="feature__icon">✈</span>
+        <h3>Envio rápido</h3>
+        <p>Pronta entrega e despacho ágil para todo o Brasil, com rastreio do começo ao fim.</p>
+      </article>
+      <article class="feature reveal">
+        <span class="feature__icon">🎁</span>
+        <h3>Embalagem especial</h3>
+        <p>Sua peça chega numa embalagem pensada para presentear — pronta para encantar.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== PRODUTOS ===================== -->
+  <section class="products" id="produtos">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Vitrine</span>
+        <h2 class="section-title">Os queridinhos da loja</h2>
+        <p class="section-sub">Peças que vendem sozinhas — escolha a sua favorita.</p>
+      </div>
+
+      <!-- Os produtos são gerados a partir de products.json (editável pelo painel /admin) -->
+      <div class="products__grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== COLEÇÃO (banner) ===================== -->
+  <section class="collection" id="colecao">
+    <div class="collection__bg" style="background-image:url('images/colecao.jpg')"></div>
+    <div class="container collection__inner reveal">
+      <span class="eyebrow eyebrow--light">A coleção</span>
+      <h2 class="collection__title">Peças que transformam<br>qualquer look</h2>
+      <p class="collection__text">
+        Acessórios delicados para mulheres marcantes. Do trabalho ao date,
+        do casual ao especial — a Use Blossom acompanha cada momento seu.
+      </p>
+      <a href="#produtos" class="btn btn--gold btn--lg">Escolher meu acessório</a>
+    </div>
+  </section>
+
+  <!-- ===================== DEPOIMENTOS ===================== -->
+  <section class="testimonials" id="depoimentos">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Clientes</span>
+        <h2 class="section-title">Quem usa, ama</h2>
+        <p class="section-sub">Mais de 5 mil pedidos enviados com muito carinho.</p>
+      </div>
+
+      <div class="testimonials__grid">
+        <figure class="quote reveal">
+          <div class="quote__stars">★★★★★</div>
+          <blockquote>"Apaixonada! O brinho de coração é ainda mais lindo pessoalmente e não escureceu nada. Virei cliente fiel."</blockquote>
+          <figcaption>— Marina S.</figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="quote__stars">★★★★★</div>
+          <blockquote>"Chegou super rápido e a embalagem é um luxo. Comprei pra mim e já encomendei pra presentear minha mãe."</blockquote>
+          <figcaption>— Júlia R.</figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="quote__stars">★★★★★</div>
+          <blockquote>"Os anéis combinam com tudo e o dourado é perfeito. Recebi vários elogios no mesmo dia que usei!"</blockquote>
+          <figcaption>— Camila A.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA FINAL ===================== -->
+  <section class="cta">
+    <div class="container cta__inner reveal">
+      <h2 class="cta__title">Escolha agora o acessório perfeito para você</h2>
+      <p class="cta__text">Brilho que dura, elegância que fica. Garanta o seu antes que esgote.</p>
+      <a href="#produtos" data-wa data-msg="Olá! Quero comprar na Use Blossom" class="btn btn--gold btn--lg" target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" id="contato">
+    <div class="container footer__grid">
+      <div class="footer__col">
+        <img src="images/logo.png" alt="Use Blossom" class="footer__logo" onerror="this.style.display='none'" />
+        <p class="footer__about">Acessórios femininos delicados e sofisticados, feitos para florescer em você. Banhados a ouro 18k.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navegação</h4>
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#colecao">Coleção</a>
+        <a href="#depoimentos">Clientes</a>
+      </div>
+      <div class="footer__col">
+        <h4>Atendimento</h4>
+        <a href="#produtos" data-wa data-msg="Olá! Vim pelo site da Use Blossom" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-ig target="_blank" rel="noopener">@useblossom._</a>
+        <a href="mailto:contato@useblossom.com.br">contato@useblossom.com.br</a>
+      </div>
+      <div class="footer__col">
+        <h4>Compra segura</h4>
+        <p class="footer__about">Pagamento via Pix, cartão e link seguro.<br>Trocas facilitadas em até 7 dias.</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© <span id="year"></span> Use Blossom Acessórios · Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a href="#produtos" data-wa data-msg="Olá! Vim pelo site da Use Blossom"
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.4-8.3zm-8.5 17.9c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.5 9.5 0 0 1-1.5-5.1c0-5.3 4.3-9.6 9.7-9.6 2.6 0 5 1 6.8 2.8a9.5 9.5 0 0 1 2.8 6.8c0 5.3-4.3 9.7-9.8 9.7zm5.3-7.2c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+
+  <!-- Login do painel: redireciona a cliente para /admin após aceitar o convite -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
