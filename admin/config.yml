@@ -35,6 +35,82 @@ collections:
               - { name: "imagem", label: "Foto do produto", widget: "image" }
               - { name: "selo", label: "Selo (ex: Novidade, Mais vendido)", widget: "string", required: false, hint: "Opcional. Deixe vazio para não mostrar selo." }
 
+  # ---------- TEXTOS DO SITE ----------
+  - name: "conteudo"
+    label: "📝 Textos do site"
+    description: "Edite os textos de todas as seções da página."
+    files:
+      - name: "textos"
+        label: "Textos das seções"
+        file: "content.json"
+        fields:
+          - name: "hero"
+            label: "Topo (Hero)"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", label: "Linha de cima (pequena)", widget: "string" }
+              - { name: "titulo", label: "Título principal", widget: "string" }
+              - { name: "destaque", label: "Palavra em destaque (dourado/itálico)", widget: "string", hint: "Uma palavra do título acima que ficará destacada." }
+              - { name: "subtitulo", label: "Subtítulo", widget: "text" }
+              - { name: "botao1", label: "Texto do botão 1", widget: "string" }
+              - { name: "botao2", label: "Texto do botão 2", widget: "string" }
+              - name: "trust"
+                label: "Selos de confiança"
+                widget: "list"
+                fields:
+                  - { name: "numero", label: "Destaque (ex: +5 mil)", widget: "string" }
+                  - { name: "texto", label: "Texto (ex: clientes felizes)", widget: "string" }
+          - name: "diferenciais"
+            label: "Diferenciais (4 cartões)"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            fields:
+              - { name: "icone", label: "Ícone (emoji)", widget: "string" }
+              - { name: "titulo", label: "Título", widget: "string" }
+              - { name: "texto", label: "Texto", widget: "text" }
+          - name: "secao_produtos"
+            label: "Cabeçalho da vitrine de produtos"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", label: "Linha de cima", widget: "string" }
+              - { name: "titulo", label: "Título", widget: "string" }
+              - { name: "subtitulo", label: "Subtítulo", widget: "string" }
+          - name: "colecao"
+            label: "Banner da coleção"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", label: "Linha de cima", widget: "string" }
+              - { name: "titulo", label: "Título", widget: "string" }
+              - { name: "texto", label: "Texto", widget: "text" }
+              - { name: "botao", label: "Texto do botão", widget: "string" }
+          - name: "secao_depoimentos"
+            label: "Cabeçalho dos depoimentos"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", label: "Linha de cima", widget: "string" }
+              - { name: "titulo", label: "Título", widget: "string" }
+              - { name: "subtitulo", label: "Subtítulo", widget: "string" }
+          - name: "depoimentos"
+            label: "Depoimentos de clientes"
+            widget: "list"
+            summary: "{{fields.autor}}"
+            fields:
+              - { name: "texto", label: "Depoimento", widget: "text" }
+              - { name: "autor", label: "Nome do cliente", widget: "string" }
+          - name: "cta"
+            label: "Chamada final"
+            widget: "object"
+            fields:
+              - { name: "titulo", label: "Título", widget: "string" }
+              - { name: "texto", label: "Texto", widget: "string" }
+              - { name: "botao", label: "Texto do botão", widget: "string" }
+          - name: "footer"
+            label: "Rodapé"
+            widget: "object"
+            fields:
+              - { name: "sobre", label: "Sobre a loja", widget: "text" }
+              - { name: "compra_segura", label: "Compra segura", widget: "text" }
+
   # ---------- CONFIGURAÇÕES ----------
   - name: "config"
     label: "⚙️ Contato da loja"
