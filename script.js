@@ -119,22 +119,43 @@ window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
 // ---------- Animações de revelação ao scroll ----------
-const io = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.style.transitionDelay = `${(i % 4) * 80}ms`;
-        entry.target.classList.add("visible");
-        io.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-);
+const supportsIO = "IntersectionObserver" in window;
+
+const io = supportsIO
+  ? new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = `${(i % 4) * 80}ms`;
+            entry.target.classList.add("visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    )
+  : null;
+
 function observeReveals() {
-  document.querySelectorAll(".reveal:not(.visible)").forEach((el) => io.observe(el));
+  const els = document.querySelectorAll(".reveal:not(.visible)");
+  if (!io) {
+    // navegador sem suporte: mostra tudo na hora
+    els.forEach((el) => el.classList.add("visible"));
+    return;
+  }
+  els.forEach((el) => io.observe(el));
 }
 observeReveals();
+
+// Rede de segurança: garante que nada fique invisível em celulares antigos
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.visible)").forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) el.classList.add("visible");
+    });
+  }, 800);
+});
 
 // ---------- Inicializa ----------
 loadData();

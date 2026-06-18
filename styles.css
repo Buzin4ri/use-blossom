@@ -239,6 +239,7 @@ img { max-width: 100%; display: block; }
 .hero__image {
   width: 100%;
   aspect-ratio: 4 / 5;
+  min-height: 460px; /* fallback p/ navegadores sem suporte a aspect-ratio */
   border-radius: 220px 220px 24px 24px;
   background: linear-gradient(160deg, var(--champagne), var(--brown-500));
   background-size: cover;
@@ -316,6 +317,7 @@ img { max-width: 100%; display: block; }
 .card__media {
   position: relative;
   aspect-ratio: 1 / 1;
+  min-height: 260px; /* fallback p/ navegadores sem suporte a aspect-ratio */
   background: linear-gradient(160deg, var(--champagne), var(--brown-500));
   background-size: cover;
   background-position: center;
@@ -524,5 +526,5 @@ img { max-width: 100%; display: block; }
   .features__grid { grid-template-columns: 1fr; }
   .products__grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
   .footer__grid { grid-template-columns: 1fr; }
-  .hero__image { border-radius: 160px 160px 20px 20px; }
+  .hero__image { border-radius: 160px 160px 20px 20px; min-height: 380px; }
 }
