@@ -1,22 +1,47 @@
 {
   "hero": {
-    "eyebrow": "✦ Coleção 2026 · Banhado a ouro 18k",
+    "eyebrow": "✦ Coleção 2056 · Banhado a ouro 18k",
     "titulo": "Acessórios que florescem em você",
     "destaque": "florescem",
     "subtitulo": "Peças delicadas, sofisticadas e atemporais para mulheres marcantes. Acabamento premium, brilho que dura e aquele toque de elegância no seu dia a dia.",
     "botao1": "Comprar agora",
     "botao2": "Ver coleção",
     "trust": [
-      { "numero": "+5 mil", "texto": "clientes felizes" },
-      { "numero": "Pronta", "texto": "entrega" },
-      { "numero": "Envio", "texto": "para todo Brasil" }
+      {
+        "numero": "+5 mil",
+        "texto": "clientes felizes"
+      },
+      {
+        "numero": "Pronta",
+        "texto": "entrega"
+      },
+      {
+        "numero": "Envio",
+        "texto": "para todo Brasil"
+      }
     ]
   },
   "diferenciais": [
-    { "icone": "✦", "titulo": "Acabamento premium", "texto": "Banho de ouro 18k antialérgico que não escurece e mantém o brilho por muito mais tempo." },
-    { "icone": "❤", "titulo": "Peças selecionadas", "texto": "Cada acessório é escolhido a dedo para combinar delicadeza, sofisticação e tendência." },
-    { "icone": "✈", "titulo": "Envio rápido", "texto": "Pronta entrega e despacho ágil para todo o Brasil, com rastreio do começo ao fim." },
-    { "icone": "🎁", "titulo": "Embalagem especial", "texto": "Sua peça chega numa embalagem pensada para presentear — pronta para encantar." }
+    {
+      "icone": "✦",
+      "titulo": "Acabamento premium",
+      "texto": "Banho de ouro 18k antialérgico que não escurece e mantém o brilho por muito mais tempo."
+    },
+    {
+      "icone": "❤",
+      "titulo": "Peças selecionadas",
+      "texto": "Cada acessório é escolhido a dedo para combinar delicadeza, sofisticação e tendência."
+    },
+    {
+      "icone": "✈",
+      "titulo": "Envio rápido",
+      "texto": "Pronta entrega e despacho ágil para todo o Brasil, com rastreio do começo ao fim."
+    },
+    {
+      "icone": "🎁",
+      "titulo": "Embalagem especial",
+      "texto": "Sua peça chega numa embalagem pensada para presentear — pronta para encantar."
+    }
   ],
   "secao_produtos": {
     "eyebrow": "Vitrine",
@@ -35,9 +60,18 @@
     "subtitulo": "Mais de 5 mil pedidos enviados com muito carinho."
   },
   "depoimentos": [
-    { "texto": "Apaixonada! O brinco de coração é ainda mais lindo pessoalmente e não escureceu nada. Virei cliente fiel.", "autor": "Marina S." },
-    { "texto": "Chegou super rápido e a embalagem é um luxo. Comprei pra mim e já encomendei pra presentear minha mãe.", "autor": "Júlia R." },
-    { "texto": "Os anéis combinam com tudo e o dourado é perfeito. Recebi vários elogios no mesmo dia que usei!", "autor": "Camila A." }
+    {
+      "texto": "Apaixonada! O brinco de coração é ainda mais lindo pessoalmente e não escureceu nada. Virei cliente fiel.",
+      "autor": "Marina S."
+    },
+    {
+      "texto": "Chegou super rápido e a embalagem é um luxo. Comprei pra mim e já encomendei pra presentear minha mãe.",
+      "autor": "Júlia R."
+    },
+    {
+      "texto": "Os anéis combinam com tudo e o dourado é perfeito. Recebi vários elogios no mesmo dia que usei!",
+      "autor": "Camila A."
+    }
   ],
   "cta": {
     "titulo": "Escolha agora o acessório perfeito para você",
