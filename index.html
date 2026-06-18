@@ -51,17 +51,17 @@
   <section class="hero" id="inicio">
     <div class="container hero__inner">
       <div class="hero__content reveal">
-        <span class="eyebrow">✦ Coleção 2026 · Banhado a ouro 18k</span>
-        <h1 class="hero__title">Acessórios que <em>florescem</em> em você</h1>
-        <p class="hero__subtitle">
+        <span class="eyebrow" data-c="hero.eyebrow">✦ Coleção 2026 · Banhado a ouro 18k</span>
+        <h1 class="hero__title" id="heroTitle">Acessórios que <em>florescem</em> em você</h1>
+        <p class="hero__subtitle" data-c="hero.subtitulo">
           Peças delicadas, sofisticadas e atemporais para mulheres marcantes.
           Acabamento premium, brilho que dura e aquele toque de elegância no seu dia a dia.
         </p>
         <div class="hero__actions">
-          <a href="#produtos" class="btn btn--gold btn--lg">Comprar agora</a>
-          <a href="#colecao" class="btn btn--ghost btn--lg">Ver coleção</a>
+          <a href="#produtos" class="btn btn--gold btn--lg" data-c="hero.botao1">Comprar agora</a>
+          <a href="#colecao" class="btn btn--ghost btn--lg" data-c="hero.botao2">Ver coleção</a>
         </div>
-        <div class="hero__trust">
+        <div class="hero__trust" id="heroTrust">
           <div><strong>+5 mil</strong><span>clientes felizes</span></div>
           <div><strong>Pronta</strong><span>entrega</span></div>
           <div><strong>Envio</strong><span>para todo Brasil</span></div>
@@ -77,7 +77,7 @@
 
   <!-- ===================== DIFERENCIAIS ===================== -->
   <section class="features">
-    <div class="container features__grid">
+    <div class="container features__grid" id="featuresGrid">
       <article class="feature reveal">
         <span class="feature__icon">✦</span>
         <h3>Acabamento premium</h3>
@@ -105,9 +105,9 @@
   <section class="products" id="produtos">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Vitrine</span>
-        <h2 class="section-title">Os queridinhos da loja</h2>
-        <p class="section-sub">Peças que vendem sozinhas — escolha a sua favorita.</p>
+        <span class="eyebrow" data-c="secao_produtos.eyebrow">Vitrine</span>
+        <h2 class="section-title" data-c="secao_produtos.titulo">Os queridinhos da loja</h2>
+        <p class="section-sub" data-c="secao_produtos.subtitulo">Peças que vendem sozinhas — escolha a sua favorita.</p>
       </div>
 
       <!-- Os produtos são gerados a partir de products.json (editável pelo painel /admin) -->
@@ -119,13 +119,13 @@
   <section class="collection" id="colecao">
     <div class="collection__bg" style="background-image:url('images/colecao.jpg')"></div>
     <div class="container collection__inner reveal">
-      <span class="eyebrow eyebrow--light">A coleção</span>
-      <h2 class="collection__title">Peças que transformam<br>qualquer look</h2>
-      <p class="collection__text">
+      <span class="eyebrow eyebrow--light" data-c="colecao.eyebrow">A coleção</span>
+      <h2 class="collection__title" data-c="colecao.titulo">Peças que transformam<br>qualquer look</h2>
+      <p class="collection__text" data-c="colecao.texto">
         Acessórios delicados para mulheres marcantes. Do trabalho ao date,
         do casual ao especial — a Use Blossom acompanha cada momento seu.
       </p>
-      <a href="#produtos" class="btn btn--gold btn--lg">Escolher meu acessório</a>
+      <a href="#produtos" class="btn btn--gold btn--lg" data-c="colecao.botao">Escolher meu acessório</a>
     </div>
   </section>
 
@@ -133,12 +133,12 @@
   <section class="testimonials" id="depoimentos">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Clientes</span>
-        <h2 class="section-title">Quem usa, ama</h2>
-        <p class="section-sub">Mais de 5 mil pedidos enviados com muito carinho.</p>
+        <span class="eyebrow" data-c="secao_depoimentos.eyebrow">Clientes</span>
+        <h2 class="section-title" data-c="secao_depoimentos.titulo">Quem usa, ama</h2>
+        <p class="section-sub" data-c="secao_depoimentos.subtitulo">Mais de 5 mil pedidos enviados com muito carinho.</p>
       </div>
 
-      <div class="testimonials__grid">
+      <div class="testimonials__grid" id="testimonialsGrid">
         <figure class="quote reveal">
           <div class="quote__stars">★★★★★</div>
           <blockquote>"Apaixonada! O brinho de coração é ainda mais lindo pessoalmente e não escureceu nada. Virei cliente fiel."</blockquote>
@@ -161,9 +161,9 @@
   <!-- ===================== CTA FINAL ===================== -->
   <section class="cta">
     <div class="container cta__inner reveal">
-      <h2 class="cta__title">Escolha agora o acessório perfeito para você</h2>
-      <p class="cta__text">Brilho que dura, elegância que fica. Garanta o seu antes que esgote.</p>
-      <a href="#produtos" data-wa data-msg="Olá! Quero comprar na Use Blossom" class="btn btn--gold btn--lg" target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
+      <h2 class="cta__title" data-c="cta.titulo">Escolha agora o acessório perfeito para você</h2>
+      <p class="cta__text" data-c="cta.texto">Brilho que dura, elegância que fica. Garanta o seu antes que esgote.</p>
+      <a href="#produtos" data-wa data-msg="Olá! Quero comprar na Use Blossom" data-c="cta.botao" class="btn btn--gold btn--lg" target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
     </div>
   </section>
 
@@ -172,7 +172,7 @@
     <div class="container footer__grid">
       <div class="footer__col">
         <img src="images/logo.png" alt="Use Blossom" class="footer__logo" onerror="this.style.display='none'" />
-        <p class="footer__about">Acessórios femininos delicados e sofisticados, feitos para florescer em você. Banhados a ouro 18k.</p>
+        <p class="footer__about" data-c="footer.sobre">Acessórios femininos delicados e sofisticados, feitos para florescer em você. Banhados a ouro 18k.</p>
       </div>
       <div class="footer__col">
         <h4>Navegação</h4>
@@ -189,7 +189,7 @@
       </div>
       <div class="footer__col">
         <h4>Compra segura</h4>
-        <p class="footer__about">Pagamento via Pix, cartão e link seguro.<br>Trocas facilitadas em até 7 dias.</p>
+        <p class="footer__about" data-c="footer.compra_segura">Pagamento via Pix, cartão e link seguro.<br>Trocas facilitadas em até 7 dias.</p>
       </div>
     </div>
     <div class="footer__bottom">

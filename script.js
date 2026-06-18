@@ -68,8 +68,86 @@ function applySettingsLinks() {
   });
 }
 
+/* ---------- Aplica os textos do site (content.json) ---------- */
+function get(obj, path) {
+  return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
+}
+
+function applyContent(c) {
+  if (!c) return;
+
+  // Textos simples (elementos com data-c="caminho.do.campo")
+  document.querySelectorAll("[data-c]").forEach((el) => {
+    const val = get(c, el.dataset.c);
+    if (typeof val === "string" && val.trim() !== "") {
+      // mantém quebras de linha simples (caso o texto tenha)
+      el.textContent = val;
+    }
+  });
+
+  // Título do hero com palavra em destaque
+  if (c.hero && c.hero.titulo) {
+    const h = document.getElementById("heroTitle");
+    if (h) {
+      const titulo = escapeHtml(c.hero.titulo);
+      const destaque = (c.hero.destaque || "").trim();
+      h.innerHTML = destaque
+        ? titulo.replace(escapeHtml(destaque), `<em>${escapeHtml(destaque)}</em>`)
+        : titulo;
+    }
+  }
+
+  // Barra de confiança (hero trust)
+  if (Array.isArray(c.hero && c.hero.trust)) {
+    const box = document.getElementById("heroTrust");
+    if (box) {
+      box.innerHTML = c.hero.trust
+        .map((t) => `<div><strong>${escapeHtml(t.numero)}</strong><span>${escapeHtml(t.texto)}</span></div>`)
+        .join("");
+    }
+  }
+
+  // Diferenciais
+  if (Array.isArray(c.diferenciais)) {
+    const grid = document.getElementById("featuresGrid");
+    if (grid) {
+      grid.innerHTML = c.diferenciais
+        .map((d) => `
+          <article class="feature reveal">
+            <span class="feature__icon">${escapeHtml(d.icone || "✦")}</span>
+            <h3>${escapeHtml(d.titulo)}</h3>
+            <p>${escapeHtml(d.texto)}</p>
+          </article>`)
+        .join("");
+    }
+  }
+
+  // Depoimentos
+  if (Array.isArray(c.depoimentos)) {
+    const grid = document.getElementById("testimonialsGrid");
+    if (grid) {
+      grid.innerHTML = c.depoimentos
+        .map((d) => `
+          <figure class="quote reveal">
+            <div class="quote__stars">★★★★★</div>
+            <blockquote>"${escapeHtml(d.texto)}"</blockquote>
+            <figcaption>— ${escapeHtml(d.autor)}</figcaption>
+          </figure>`)
+        .join("");
+    }
+  }
+
+  observeReveals();
+}
+
 /* ---------- Carrega dados (json) com fallback ---------- */
 async function loadData() {
+  // textos do site
+  try {
+    const r = await fetch("content.json", { cache: "no-store" });
+    if (r.ok) applyContent(await r.json());
+  } catch (_) { /* mantém os textos padrão do HTML */ }
+
   // settings
   try {
     const r = await fetch("settings.json", { cache: "no-store" });
