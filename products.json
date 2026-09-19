@@ -1,11 +1,11 @@
 {
   "produtos": [
     {
-      "nome": "Anel Coração Cravejado",
-      "preco": "89,90",
-      "descricao": "Anel delicado com coração em zircônias, banhado a ouro 18k.",
+      "nome": "Anel Dedinho",
+      "preco": "59,90",
+      "descricao": "Anel dedinho",
       "imagem": "images/produto-anel-coracao.jpg",
-      "selo": "Mais vendido"
+      "selo": ""
     },
     {
       "nome": "Brinco Borboleta Gold",
