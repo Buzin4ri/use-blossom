@@ -4,8 +4,8 @@
     "titulo": "Use Blossom ",
     "destaque": "Seu toque final começa aqui ",
     "subtitulo": "Detalhes que transformam o simples em especial. Na Blossom, cada peça é escolhida para complementar seu estilo e deixar seu look ainda mais único. ",
-    "botao1": "Comprar agora",
-    "botao2": "Ver coleção ",
+    "botao1": "Comprar",
+    "botao2": "Se mimar agora",
     "trust": []
   },
   "diferenciais": [],
@@ -15,24 +15,24 @@
     "subtitulo": "Escolha a sua favorita."
   },
   "colecao": {
-    "eyebrow": "A coleção",
-    "titulo": "Peças que transformam qualquer look",
-    "texto": "Acessórios delicados para mulheres marcantes. Do trabalho ao date, do casual ao especial — a Use Blossom acompanha cada momento seu.",
-    "botao": "Escolher meu acessório"
+    "eyebrow": "Seu estilo, seus detalhes.",
+    "titulo": "Brilhe do seu jeito",
+    "texto": "Acessórios para completar seus looks e acompanhar cada versão de você.",
+    "botao": "Descobrir Coleção "
   },
   "secao_depoimentos": {
     "eyebrow": "Clientes",
     "titulo": "Quem usa, ama",
-    "subtitulo": "Mais de 5 mil pedidos enviados com muito carinho."
+    "subtitulo": "É um prazer fazer parte dos seus momentos."
   },
   "depoimentos": [],
   "cta": {
-    "titulo": "Escolha agora o acessório perfeito para você",
-    "texto": "Brilho que dura, elegância que fica. Garanta o seu antes que esgote.",
-    "botao": "Comprar pelo WhatsApp"
+    "titulo": "Encontre o detalhe que faltava no seu look",
+    "texto": "Use Blossom",
+    "botao": "Quero conhecer a Blossom (Comprar pelo o WhatsApp)"
   },
   "footer": {
-    "sobre": "Acessórios femininos delicados e sofisticados, feitos para florescer em você. Banhados a ouro 18k.",
-    "compra_segura": "Pagamento via Pix, cartão e link seguro. Trocas facilitadas em até 7 dias."
+    "sobre": "Na Blossom, cada peça é escolhida para acompanhar você em momentos especiais e no dia a dia.",
+    "compra_segura": "Pagamento fácil e seguro via Pix, cartão ou link de pagamento. "
   }
 }
