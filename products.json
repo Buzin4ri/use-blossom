@@ -54,6 +54,36 @@
       "preco": "39,90",
       "descricao": "Banho de Ouro 18K",
       "imagem": "images/4e905c7e-fe27-4274-aa34-ea4368c5054b.jpeg"
+    },
+    {
+      "imagem": "images/img_2256.jpeg",
+      "nome": "Piercing Fake Ester",
+      "preco": "39,90",
+      "descricao": "Banho de Ouro 18K"
+    },
+    {
+      "imagem": "images/f91cdaba-81c3-4755-82e4-cf2d3396a33b.jpeg",
+      "nome": "Colar Love ",
+      "preco": "89,90",
+      "descricao": "Prata 925"
+    },
+    {
+      "imagem": "images/img_2254.jpeg",
+      "nome": "Choker",
+      "preco": "59,90",
+      "descricao": "Banho de Prata 925"
+    },
+    {
+      "imagem": "images/a792394a-2eaa-428f-b6be-615bc6284379.jpeg",
+      "nome": "Bracelete Wave ",
+      "preco": "79,90",
+      "descricao": "Banho de Ouro 18K"
+    },
+    {
+      "imagem": "images/53f30294-4314-4bbc-b6de-bbf0371ed1c4.jpeg",
+      "nome": "Argola Riley ",
+      "preco": "49,90",
+      "descricao": "Banho de Prata 925"
     }
   ]
 }
