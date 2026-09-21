@@ -42,6 +42,18 @@
       "preco": "59,90",
       "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico",
       "imagem": "images/img_2235.jpeg"
+    },
+    {
+      "nome": "Piercing Fake Cravejado ",
+      "preco": "39,90",
+      "descricao": "Banho de Ouro 18K",
+      "imagem": "images/2a9b1e90-4e3b-4c04-80f6-b6586b66f23f.jpeg"
+    },
+    {
+      "nome": "Piercing Fake Basic",
+      "preco": "39,90",
+      "descricao": "Banho de Ouro 18K",
+      "imagem": "images/4e905c7e-fe27-4274-aa34-ea4368c5054b.jpeg"
     }
   ]
 }
