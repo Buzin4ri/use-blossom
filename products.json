@@ -4,100 +4,155 @@
       "nome": "Anel Regulável Dedinho Luna",
       "categoria": "aneis",
       "preco": "59,90",
+      "precoPromocional": "",
       "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico",
       "imagem": "images/img_2220.jpeg",
-      "selo": ""
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 1
     },
     {
-      "nome": "Colar Evelyn ",
+      "nome": "Colar Evelyn",
       "categoria": "colares",
       "preco": "89,90",
-      "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico\n",
-      "imagem": "images/img_2217.jpeg"
+      "precoPromocional": "",
+      "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico",
+      "imagem": "images/img_2217.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 2
     },
     {
       "nome": "Anel Regulável Grace",
       "categoria": "aneis",
       "preco": "59,90",
+      "precoPromocional": "",
       "descricao": "Banho de Prata 925 | Níquel Free e Hipoalergênico",
-      "imagem": "images/img_2232.jpeg"
+      "imagem": "images/img_2232.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 3
     },
     {
       "nome": "Anel Regulável Duplo Line",
       "categoria": "aneis",
       "preco": "39,90",
+      "precoPromocional": "",
       "descricao": "Banho de Prata 925 | Níquel Free e Hipoalergênico",
-      "imagem": "images/img_2222.jpeg"
+      "imagem": "images/img_2222.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 4
     },
     {
-      "nome": "Anel Regulável Fancy ",
+      "nome": "Anel Regulável Fancy",
       "categoria": "aneis",
       "preco": "69,90",
+      "precoPromocional": "",
       "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico",
-      "imagem": "images/img_2236.jpeg"
+      "imagem": "images/img_2236.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 5
     },
     {
       "nome": "Anel Regulável Monique",
       "categoria": "aneis",
       "preco": "59,90",
+      "precoPromocional": "",
       "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico",
-      "imagem": "images/img_2223.jpeg"
+      "imagem": "images/img_2223.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 6
     },
     {
       "nome": "Anel Regulável Turning",
       "categoria": "aneis",
       "preco": "59,90",
+      "precoPromocional": "",
       "descricao": "Banho de Ouro 18K | Níquel Free e Hipoalergênico",
-      "imagem": "images/img_2235.jpeg"
+      "imagem": "images/img_2235.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 7
     },
     {
-      "nome": "Piercing Fake Cravejado ",
+      "nome": "Piercing Fake Cravejado",
       "categoria": "piercings",
       "preco": "39,90",
+      "precoPromocional": "",
       "descricao": "Banho de Ouro 18K",
-      "imagem": "images/2a9b1e90-4e3b-4c04-80f6-b6586b66f23f.jpeg"
+      "imagem": "images/2a9b1e90-4e3b-4c04-80f6-b6586b66f23f.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 8
     },
     {
       "nome": "Piercing Fake Basic",
       "categoria": "piercings",
       "preco": "39,90",
+      "precoPromocional": "",
       "descricao": "Banho de Ouro 18K",
-      "imagem": "images/53f30294-4314-4bbc-b6de-bbf0371ed1c4.jpeg"
+      "imagem": "images/53f30294-4314-4bbc-b6de-bbf0371ed1c4.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 9
     },
     {
-      "imagem": "images/img_2256.jpeg",
       "nome": "Piercing Fake Ester",
       "categoria": "piercings",
       "preco": "39,90",
-      "descricao": "Banho de Ouro 18K"
+      "precoPromocional": "",
+      "descricao": "Banho de Ouro 18K",
+      "imagem": "images/img_2256.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 10
     },
     {
-      "imagem": "images/f91cdaba-81c3-4755-82e4-cf2d3396a33b.jpeg",
-      "nome": "Colar Love ",
+      "nome": "Colar Love",
       "categoria": "colares",
       "preco": "89,90",
-      "descricao": "Prata 925"
+      "precoPromocional": "",
+      "descricao": "Prata 925",
+      "imagem": "images/f91cdaba-81c3-4755-82e4-cf2d3396a33b.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 11
     },
     {
-      "imagem": "images/img_2254.jpeg",
       "nome": "Choker",
       "categoria": "colares",
       "preco": "59,90",
-      "descricao": "Banho de Prata 925"
+      "precoPromocional": "",
+      "descricao": "Banho de Prata 925",
+      "imagem": "images/img_2254.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 12
     },
     {
-      "imagem": "images/a792394a-2eaa-428f-b6be-615bc6284379.jpeg",
-      "nome": "Bracelete Wave ",
+      "nome": "Bracelete Wave",
       "categoria": "pulseiras",
       "preco": "79,90",
-      "descricao": "Banho de Ouro 18K"
+      "precoPromocional": "",
+      "descricao": "Banho de Ouro 18K",
+      "imagem": "images/a792394a-2eaa-428f-b6be-615bc6284379.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 13
     },
     {
-      "imagem": "images/53f30294-4314-4bbc-b6de-bbf0371ed1c4.jpeg",
-      "nome": "Argola Riley ",
+      "nome": "Argola Riley",
       "categoria": "brincos",
       "preco": "49,90",
-      "descricao": "Banho de Prata 925"
+      "precoPromocional": "",
+      "descricao": "Banho de Prata 925",
+      "imagem": "images/53f30294-4314-4bbc-b6de-bbf0371ed1c4.jpeg",
+      "disponivel": true,
+      "destaque": false,
+      "ordem": 14
     }
   ]
 }

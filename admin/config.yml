@@ -1,3 +1,12 @@
+# =========================================================
+# USE BLOSSOM — Painel da Loja
+# ---------------------------------------------------------
+# Este arquivo define o que a lojista vê no painel /admin.
+# Cada produto é uma FICHA separada dentro da pasta "produtos/".
+# Ao publicar, a Netlify junta as fichas no arquivo products.json,
+# que é o arquivo que o site lê para montar o catálogo.
+# =========================================================
+
 backend:
   name: git-gateway
   branch: main
@@ -9,78 +18,230 @@ locale: "pt"
 media_folder: "images"
 public_folder: "images"
 
-# Mensagens em português
+# Salvar já publica direto no site (sem etapas extras)
 publish_mode: simple
+
+# Marca e atalho para ver a loja
+site_url: "https://useblossom.netlify.app"
+display_url: "useblossom.netlify.app"
+logo_url: "/images/logo.png"
 
 collections:
   # ---------- PRODUTOS ----------
-  - name: "loja"
-    label: "🛍️ Produtos"
-    description: "Adicione, edite ou remova os produtos da vitrine."
+  - name: "produtos"
+    label: "🛍️ Meus produtos"
+    label_singular: "produto"
+    description: "Toque no botão “+ produto” para cadastrar uma peça nova. Para mudar preço, foto ou marcar como esgotado, toque na peça na lista abaixo."
+    folder: "produtos"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "nome"
+    slug: "{{fields.nome}}"
+    summary: "{{nome}} · R$ {{preco}}"
+    sortable_fields: ["ordem", "nome", "preco"]
+    editor:
+      preview: false
+    view_filters:
+      - label: "Só os disponíveis"
+        field: disponivel
+        pattern: true
+      - label: "Só os esgotados"
+        field: disponivel
+        pattern: false
+      - label: "Só os destaques"
+        field: destaque
+        pattern: true
+    view_groups:
+      - label: "Agrupar por categoria"
+        field: categoria
+    fields:
+      - name: "imagem"
+        label: "Foto do produto"
+        widget: "image"
+        required: true
+        hint: "Escolha uma foto da peça na galeria do seu celular. Prefira foto clara e com a peça bem visível."
+
+      - name: "nome"
+        label: "Nome do produto"
+        widget: "string"
+        required: true
+        hint: "É o nome que suas clientes vão ver. Exemplo: Brinco Coração Blossom."
+
+      - name: "categoria"
+        label: "Categoria"
+        widget: "select"
+        required: true
+        default: "aneis"
+        hint: "Escolha onde esta peça entra. Isso monta os filtros do site."
+        options:
+          - { label: "Brincos", value: "brincos" }
+          - { label: "Colares", value: "colares" }
+          - { label: "Anéis", value: "aneis" }
+          - { label: "Pulseiras", value: "pulseiras" }
+          - { label: "Piercings", value: "piercings" }
+          - { label: "Outros", value: "outros" }
+
+      - name: "preco"
+        label: "Preço"
+        widget: "string"
+        required: true
+        hint: "Digite somente o valor, como 59,90. Não precisa escrever R$."
+        pattern: ["^[0-9]{1,6}([,][0-9]{1,2})?$", "Digite somente números e vírgula. Exemplo: 59,90"]
+
+      - name: "precoPromocional"
+        label: "Preço promocional"
+        widget: "string"
+        required: false
+        default: ""
+        hint: "Só preencha se a peça estiver em promoção. O preço normal aparece riscado e este aparece em destaque. Deixe vazio se não houver desconto."
+        pattern: ["^$|^[0-9]{1,6}([,][0-9]{1,2})?$", "Deixe vazio ou digite somente números e vírgula. Exemplo: 49,90"]
+
+      - name: "descricao"
+        label: "Descrição do produto"
+        widget: "text"
+        required: false
+        default: ""
+        hint: "Uma frase curta já é suficiente. Exemplo: Banho de Ouro 18K, níquel free e hipoalergênico."
+
+      - name: "disponivel"
+        label: "Produto disponível"
+        widget: "boolean"
+        default: true
+        hint: "Desative quando a peça esgotar. Ela continua aparecendo no site, mas marcada como Esgotado e sem poder ser comprada."
+
+      - name: "destaque"
+        label: "Mostrar nos destaques"
+        widget: "boolean"
+        default: false
+        hint: "Ative para esta peça aparecer também na área de destaques, no começo da página inicial."
+
+      - name: "ordem"
+        label: "Ordem na vitrine"
+        widget: "number"
+        required: false
+        default: 100
+        value_type: "int"
+        min: 1
+        hint: "Quem tem número menor aparece primeiro na vitrine. Se não quiser pensar nisso, pode deixar como está."
+
+  # ---------- PRODUTOS ESGOTADOS (mesma pasta, só os indisponíveis) ----------
+  - name: "esgotados"
+    label: "📦 Produtos esgotados"
+    label_singular: "produto esgotado"
+    description: "Aqui ficam as peças que você marcou como indisponíveis. Para voltar a vender, abra a peça e ligue “Produto disponível”."
+    folder: "produtos"
+    create: false
+    delete: false
+    extension: "json"
+    format: "json"
+    identifier_field: "nome"
+    summary: "{{nome}} · R$ {{preco}}"
+    filter: { field: "disponivel", value: false }
+    editor:
+      preview: false
+    fields:
+      - { name: "imagem", label: "Foto do produto", widget: "image", required: true }
+      - { name: "nome", label: "Nome do produto", widget: "string", required: true }
+      - name: "categoria"
+        label: "Categoria"
+        widget: "select"
+        required: true
+        options:
+          - { label: "Brincos", value: "brincos" }
+          - { label: "Colares", value: "colares" }
+          - { label: "Anéis", value: "aneis" }
+          - { label: "Pulseiras", value: "pulseiras" }
+          - { label: "Piercings", value: "piercings" }
+          - { label: "Outros", value: "outros" }
+      - { name: "preco", label: "Preço", widget: "string", required: true }
+      - { name: "precoPromocional", label: "Preço promocional", widget: "string", required: false, default: "" }
+      - { name: "descricao", label: "Descrição do produto", widget: "text", required: false, default: "" }
+      - name: "disponivel"
+        label: "Produto disponível"
+        widget: "boolean"
+        default: false
+        hint: "Ligue aqui quando a peça voltar ao estoque."
+      - { name: "destaque", label: "Mostrar nos destaques", widget: "boolean", default: false }
+      - { name: "ordem", label: "Ordem na vitrine", widget: "number", required: false, default: 100, value_type: "int" }
+
+  # ---------- CONFIGURAÇÕES DA LOJA ----------
+  - name: "config"
+    label: "⚙️ Configurações da loja"
+    description: "WhatsApp e Instagram usados em todos os botões do site."
     files:
-      - name: "produtos"
-        label: "Lista de produtos"
-        file: "products.json"
-        description: "Arraste para reordenar. Clique em + para adicionar um produto."
+      - name: "settings"
+        label: "Contato da loja"
+        file: "settings.json"
+        description: "Depois de alterar, toque em Publicar para valer no site."
         fields:
-          - name: "produtos"
-            label: "Produtos"
-            label_singular: "Produto"
-            widget: "list"
-            summary: "{{fields.nome}} — R$ {{fields.preco}}"
-            fields:
-              - { name: "nome", label: "Nome do produto", widget: "string" }
-              - name: "categoria"
-                label: "Categoria"
-                widget: "select"
-                default: "aneis"
-                options:
-                  - { label: "Brincos", value: "brincos" }
-                  - { label: "Colares", value: "colares" }
-                  - { label: "Anéis", value: "aneis" }
-                  - { label: "Pulseiras", value: "pulseiras" }
-                  - { label: "Piercings", value: "piercings" }
-              - { name: "preco", label: "Preço (ex: 89,90)", widget: "string", hint: "Use vírgula. Não escreva R$." }
-              - { name: "precoAntigo", label: "Preço antigo (opcional)", widget: "string", required: false, hint: "Preencha só se este produto estiver em promoção. Ex: 99,90. Deixe vazio se não houver desconto." }
-              - { name: "descricao", label: "Descrição curta", widget: "text" }
-              - { name: "imagem", label: "Foto do produto", widget: "image" }
-              - { name: "selo", label: "Selo (ex: Novidade, Mais vendido)", widget: "string", required: false, hint: "Opcional. Deixe vazio para não mostrar selo." }
+          - name: "whatsapp"
+            label: "WhatsApp da loja"
+            widget: "string"
+            required: true
+            hint: "Digite com 55 + DDD + número, somente números. Exemplo: 5511969095915. É o número que recebe todos os pedidos."
+            pattern: ["^[0-9]{12,13}$", "Digite somente números, com 55 e DDD. Exemplo: 5511969095915"]
+          - name: "instagram"
+            label: "Instagram da loja"
+            widget: "string"
+            required: true
+            hint: "Somente o usuário, sem o @. Exemplo: useblossom._"
+            pattern: ["^[A-Za-z0-9._]{1,30}$", "Digite somente o usuário, sem @ e sem link. Exemplo: useblossom._"]
+          - name: "videoTutorial"
+            label: "Link do vídeo tutorial"
+            widget: "string"
+            required: false
+            default: ""
+            hint: "Cole aqui o link de um vídeo do YouTube ensinando a usar o painel. Ele aparece na página de ajuda. Deixe vazio se não tiver."
 
   # ---------- TEXTOS DO SITE ----------
   - name: "conteudo"
-    label: "📝 Textos do site"
-    description: "Edite os textos de todas as seções da página."
+    label: "✏️ Textos do site"
+    description: "Os textos das seções da página inicial. Os produtos ficam em “Meus produtos”."
     files:
       - name: "textos"
         label: "Textos das seções"
         file: "content.json"
         fields:
           - name: "hero"
-            label: "Topo (Hero)"
+            label: "Topo do site"
             widget: "object"
             fields:
-              - { name: "eyebrow", label: "Linha de cima (pequena)", widget: "string" }
+              - { name: "eyebrow", label: "Linha pequena de cima", widget: "string" }
               - { name: "titulo", label: "Título principal", widget: "string" }
-              - { name: "destaque", label: "Palavra em destaque (dourado/itálico)", widget: "string", hint: "Uma palavra do título acima que ficará destacada." }
-              - { name: "subtitulo", label: "Subtítulo", widget: "text" }
+              - { name: "destaque", label: "Palavra em destaque", widget: "string", hint: "Uma palavra do título acima, que fica dourada e em itálico." }
+              - { name: "subtitulo", label: "Texto abaixo do título", widget: "text" }
               - { name: "botao1", label: "Texto do botão 1", widget: "string" }
               - { name: "botao2", label: "Texto do botão 2", widget: "string" }
               - name: "trust"
                 label: "Selos de confiança"
                 widget: "list"
+                required: false
+                hint: "Deixe vazio para manter os selos que já estão no site."
                 fields:
                   - { name: "numero", label: "Destaque (ex: +5 mil)", widget: "string" }
                   - { name: "texto", label: "Texto (ex: clientes felizes)", widget: "string" }
           - name: "diferenciais"
             label: "Diferenciais (4 cartões)"
             widget: "list"
+            required: false
             summary: "{{fields.titulo}}"
+            hint: "Deixe vazio para manter os diferenciais que já estão no site."
             fields:
               - { name: "icone", label: "Ícone (emoji)", widget: "string" }
               - { name: "titulo", label: "Título", widget: "string" }
               - { name: "texto", label: "Texto", widget: "text" }
+          - name: "secao_destaques"
+            label: "Cabeçalho dos destaques"
+            widget: "object"
+            hint: "Essa área só aparece no site quando você marcar alguma peça como destaque."
+            fields:
+              - { name: "eyebrow", label: "Linha de cima", widget: "string" }
+              - { name: "titulo", label: "Título", widget: "string" }
+              - { name: "subtitulo", label: "Subtítulo", widget: "string" }
           - name: "secao_produtos"
-            label: "Cabeçalho da vitrine de produtos"
+            label: "Cabeçalho da vitrine"
             widget: "object"
             fields:
               - { name: "eyebrow", label: "Linha de cima", widget: "string" }
@@ -104,10 +265,12 @@ collections:
           - name: "depoimentos"
             label: "Depoimentos de clientes"
             widget: "list"
+            required: false
             summary: "{{fields.autor}}"
+            hint: "Deixe vazio para manter os depoimentos que já estão no site."
             fields:
               - { name: "texto", label: "Depoimento", widget: "text" }
-              - { name: "autor", label: "Nome do cliente", widget: "string" }
+              - { name: "autor", label: "Nome da cliente", widget: "string" }
           - name: "cta"
             label: "Chamada final"
             widget: "object"
@@ -121,15 +284,3 @@ collections:
             fields:
               - { name: "sobre", label: "Sobre a loja", widget: "text" }
               - { name: "compra_segura", label: "Compra segura", widget: "text" }
-
-  # ---------- CONFIGURAÇÕES ----------
-  - name: "config"
-    label: "⚙️ Contato da loja"
-    description: "WhatsApp e Instagram usados nos botões do site."
-    files:
-      - name: "settings"
-        label: "WhatsApp e Instagram"
-        file: "settings.json"
-        fields:
-          - { name: "whatsapp", label: "WhatsApp", widget: "string", hint: "Só números, com 55 e DDD. Ex: 5511969095915" }
-          - { name: "instagram", label: "Instagram", widget: "string", hint: "Só o usuário, sem @. Ex: useblossom._" }

@@ -2,13 +2,87 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel · Use Blossom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>Painel da Loja · Use Blossom</title>
+
   <!-- Login (Netlify Identity) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <style>
+    /* ---------------------------------------------------------
+       Ajustes mínimos e seguros para uso no celular.
+       Não dependem de nomes de classe internos do painel, então
+       continuam funcionando quando o painel for atualizado.
+       --------------------------------------------------------- */
+
+    /* Campos com 16px evitam que o celular dê zoom sozinho ao tocar. */
+    input, textarea, select {
+      font-size: 16px !important;
+    }
+
+    /* Nada pode vazar para os lados na tela do celular. */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* A tela de edição do painel vem com largura mínima de 800px, o que obriga
+       a rolar o celular para os lados. Aqui liberamos essa largura em telas
+       pequenas. Se o painel mudar no futuro, esta regra apenas deixa de ter
+       efeito — nada quebra. */
+    @media (max-width: 799px) {
+      [class*="EditorContainer"],
+      [class*="ToolbarContainer"],
+      [class*="ControlPaneContainer"],
+      [class*="PreviewPaneContainer"] {
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+    }
+
+    /* Botão de ajuda — elemento próprio, fora da interface do painel. */
+    .blossom-ajuda {
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      z-index: 99999;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #d9bf86, #c2a14d 55%, #a8852f);
+      color: #3a2a12;
+      font-family: "Manrope", "Segoe UI", system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 26px -8px rgba(43, 29, 28, .55);
+    }
+    .blossom-ajuda:hover { filter: brightness(1.05); }
+    .blossom-ajuda:focus-visible { outline: 3px solid #2b1d1c; outline-offset: 2px; }
+
+    /* No celular fica compacto, para não cobrir os campos do formulário. */
+    @media (max-width: 480px) {
+      .blossom-ajuda {
+        padding: 10px 16px;
+        font-size: 14px;
+        opacity: .92;
+      }
+    }
+
+    @media print { .blossom-ajuda { display: none; } }
+  </style>
 </head>
 <body>
-  <!-- Painel de edição (Decap CMS) -->
-  <script src="https://unpkg.com/decap-cms@^3.3.0/dist/decap-cms.js"></script>
+  <!-- Painel de edição (Decap CMS) — versão fixada para o painel não mudar sozinho -->
+  <script src="https://unpkg.com/decap-cms@3.16.2/dist/decap-cms.js"></script>
+
+  <!-- Atalho para o tutorial. É um link normal, não mexe no painel. -->
+  <a class="blossom-ajuda" href="/ajuda/" target="_blank" rel="noopener">
+    <span aria-hidden="true">❓</span> Como usar
+  </a>
 </body>
 </html>

@@ -1,0 +1,11 @@
+{
+  "nome": "Piercing Fake Ester",
+  "categoria": "piercings",
+  "preco": "39,90",
+  "precoPromocional": "",
+  "descricao": "Banho de Ouro 18K",
+  "imagem": "images/img_2256.jpeg",
+  "disponivel": true,
+  "destaque": false,
+  "ordem": 10
+}

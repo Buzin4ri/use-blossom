@@ -108,6 +108,19 @@
     </div>
   </section>
 
+  <!-- ===================== DESTAQUES ===================== -->
+  <!-- Aparece só quando houver peças marcadas como destaque no painel /admin -->
+  <section class="products products--destaques" id="destaques" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-c="secao_destaques.eyebrow">Seleção da Blossom</span>
+        <h2 class="section-title" data-c="secao_destaques.titulo">Destaques</h2>
+        <p class="section-sub" data-c="secao_destaques.subtitulo">As peças que separamos com carinho para você.</p>
+      </div>
+      <div class="products__grid" id="destaquesGrid"></div>
+    </div>
+  </section>
+
   <!-- ===================== PRODUTOS ===================== -->
   <section class="products" id="produtos">
     <div class="container">
@@ -115,6 +128,18 @@
         <span class="eyebrow" data-c="secao_produtos.eyebrow">Vitrine</span>
         <h2 class="section-title" data-c="secao_produtos.titulo">Os queridinhos da loja</h2>
         <p class="section-sub" data-c="secao_produtos.subtitulo">Peças que vendem sozinhas — escolha a sua favorita.</p>
+      </div>
+
+      <!-- Busca por nome (aparece quando houver produtos suficientes) -->
+      <div class="search" id="searchBox" hidden>
+        <label class="sr-only" for="searchInput">Buscar peça pelo nome</label>
+        <svg class="search__icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" />
+        </svg>
+        <input type="search" id="searchInput" class="search__input" placeholder="Buscar peça pelo nome..." autocomplete="off" />
+        <button type="button" class="search__clear" id="searchClear" aria-label="Limpar busca">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
       </div>
 
       <!-- Filtro de categorias, gerado dinamicamente a partir das categorias existentes nos produtos -->

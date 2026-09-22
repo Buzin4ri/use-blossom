@@ -9,19 +9,20 @@
    Quando publicado (https), o site lê products.json e
    settings.json de verdade — que o painel /admin edita.
    --------------------------------------------------------- */
-const DEFAULT_SETTINGS = { whatsapp: "5511969095915", instagram: "useblossom._" };
+const DEFAULT_SETTINGS = { whatsapp: "5511969095915", instagram: "useblossom._", videoTutorial: "" };
 const DEFAULT_PRODUCTS = [
-  { nome: "Anel Coração Cravejado", categoria: "aneis", preco: "89,90", descricao: "Anel delicado com coração em zircônias, banhado a ouro 18k.", imagem: "images/produto-anel-coracao.jpg", selo: "Mais vendido" },
-  { nome: "Brinco Borboleta Gold", categoria: "brincos", preco: "49,90", descricao: "Par de brincos borboleta minimalistas — leveza e charme no dia a dia.", imagem: "images/produto-brinco-borboleta.jpg", selo: "" },
-  { nome: "Brinco Estrela Cintilante", categoria: "brincos", preco: "49,90", descricao: "Estrelinhas que iluminam o rosto. Perfeitas para usar todos os dias.", imagem: "images/produto-brinco-estrela.jpg", selo: "" },
-  { nome: "Brinco Coração Cravejado", categoria: "brincos", preco: "54,90", descricao: "Coração pavê em zircônias com muito brilho e acabamento impecável.", imagem: "images/produto-brinco-coracao.jpg", selo: "Novidade" },
-  { nome: "Anel Inicial Personalizado", categoria: "aneis", preco: "69,90", descricao: "Seu charme com a sua inicial. Anel de selo elegante e atemporal.", imagem: "images/produto-anel-inicial.jpg", selo: "" },
-  { nome: "Kit Anéis Luxo", categoria: "aneis", preco: "199,90", descricao: "Seleção com 6 anéis para montar combinações sofisticadas.", imagem: "images/produto-kit-aneis.jpg", selo: "Kit luxo" }
+  { nome: "Anel Coração Cravejado", categoria: "aneis", preco: "89,90", descricao: "Anel delicado com coração em zircônias, banhado a ouro 18k.", imagem: "images/produto-anel-coracao.jpg", disponivel: true, destaque: true },
+  { nome: "Brinco Borboleta Gold", categoria: "brincos", preco: "49,90", descricao: "Par de brincos borboleta minimalistas — leveza e charme no dia a dia.", imagem: "images/produto-brinco-borboleta.jpg", disponivel: true, destaque: false },
+  { nome: "Brinco Estrela Cintilante", categoria: "brincos", preco: "49,90", descricao: "Estrelinhas que iluminam o rosto. Perfeitas para usar todos os dias.", imagem: "images/produto-brinco-estrela.jpg", disponivel: true, destaque: false },
+  { nome: "Brinco Coração Cravejado", categoria: "brincos", preco: "54,90", descricao: "Coração pavê em zircônias com muito brilho e acabamento impecável.", imagem: "images/produto-brinco-coracao.jpg", disponivel: true, destaque: false },
+  { nome: "Anel Inicial Personalizado", categoria: "aneis", preco: "69,90", descricao: "Seu charme com a sua inicial. Anel de selo elegante e atemporal.", imagem: "images/produto-anel-inicial.jpg", disponivel: true, destaque: false },
+  { nome: "Kit Anéis Luxo", categoria: "aneis", preco: "199,90", descricao: "Seleção com 6 anéis para montar combinações sofisticadas.", imagem: "images/produto-kit-aneis.jpg", disponivel: true, destaque: false }
 ];
 
 let SETTINGS = { ...DEFAULT_SETTINGS };
 let CURRENT_PRODUCTS = [];
 let activeFilter = "todos";
+let activeSearch = "";
 
 /* ---------- Categorias ---------- */
 const CATEGORY_LABELS = {
@@ -32,8 +33,11 @@ const CATEGORY_LABELS = {
   piercings: "Piercings",
   outros: "Outros",
 };
-const CATEGORY_ORDER = ["brincos", "colares", "aneis", "pulseiras", "piercings"];
+const CATEGORY_ORDER = ["brincos", "colares", "aneis", "pulseiras", "piercings", "outros"];
 const categoryLabel = (slug) => CATEGORY_LABELS[slug] || "Outros";
+
+/* Quantos produtos justificam mostrar o campo de busca */
+const MIN_PRODUTOS_PARA_BUSCA = 8;
 
 /* ---------- Helpers ---------- */
 const escapeHtml = (str = "") =>
@@ -67,15 +71,21 @@ function normalizeProducts(lista) {
   return (lista || []).map((p, i) => {
     const nome = (p.nome || `Produto ${i + 1}`).trim();
     const categoria = p.categoria && CATEGORY_LABELS[p.categoria] ? p.categoria : "outros";
+    const preco = (p.preco || "0,00").toString().trim();
+    const precoPromocional = (p.precoPromocional || "").toString().trim();
     return {
       id: uniqueId(nome, i, seen),
       nome,
       categoria,
-      preco: p.preco || "0,00",
-      precoAntigo: p.precoAntigo || "",
+      preco,
+      precoPromocional,
+      // Preço que realmente vale: o promocional quando existir.
+      precoFinal: precoPromocional || preco,
       imagem: p.imagem || "",
       descricao: (p.descricao || "").trim(),
-      selo: p.selo || "",
+      // Produtos antigos (sem o campo) continuam sendo tratados como disponíveis.
+      disponivel: p.disponivel !== false,
+      destaque: p.destaque === true,
     };
   });
 }
@@ -84,39 +94,54 @@ function findProduct(id) {
   return CURRENT_PRODUCTS.find((p) => p.id === id);
 }
 
-/* ---------- Markup de preço (hierarquia: antigo riscado + atual em destaque) ---------- */
-function priceMarkup(preco, precoAntigo) {
-  const old = precoAntigo
-    ? `<span class="price__old">R$ ${escapeHtml(precoAntigo)}</span>`
+/* ---------- Markup de preço (promocional em destaque, normal riscado) ---------- */
+function priceMarkup(preco, precoPromocional) {
+  const emPromocao = Boolean(precoPromocional);
+  const antigo = emPromocao
+    ? `<span class="price__old"><span class="sr-only">De </span>R$ ${escapeHtml(preco)}</span>`
     : "";
+  const valor = emPromocao ? precoPromocional : preco;
   return `
-    <div class="price">
-      ${old}
-      <span class="price__current"><span class="price__symbol">R$</span><span class="price__value">${escapeHtml(preco)}</span></span>
+    <div class="price${emPromocao ? " price--promo" : ""}">
+      ${antigo}
+      <span class="price__current">${emPromocao ? '<span class="sr-only">Por </span>' : ""}<span class="price__symbol">R$</span><span class="price__value">${escapeHtml(valor)}</span></span>
     </div>`;
 }
 
 /* ---------- Renderiza os cards de produto ---------- */
+/* Texto sem acento e em minúsculas, para a busca encontrar "anel" e "Anél" igual */
+const normalizeText = (str = "") =>
+  String(str).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
 function cardTemplate(p) {
   const nome = escapeHtml(p.nome);
   const desc = p.descricao ? `<p class="card__desc">${escapeHtml(p.descricao)}</p>` : "";
-  const selo = p.selo ? `<span class="card__tag">${escapeHtml(p.selo)}</span>` : "";
-  const buyMsg = `Quero comprar: ${p.nome} (R$ ${p.preco})`;
+  const esgotado = !p.disponivel;
+  const tag = esgotado
+    ? `<span class="card__tag card__tag--esgotado">Esgotado</span>`
+    : (p.precoPromocional ? `<span class="card__tag card__tag--promo">Promoção</span>` : "");
+  const buyMsg = `Quero comprar: ${p.nome} (R$ ${p.precoFinal})`;
+  const busca = escapeHtml(normalizeText(`${p.nome} ${p.descricao} ${categoryLabel(p.categoria)}`));
+
+  const acoes = esgotado
+    ? `<button type="button" class="btn btn--esgotado card__add" disabled aria-disabled="true">Esgotado</button>
+       <span class="card__buynow card__buynow--off">Avisaremos quando voltar</span>`
+    : `<button type="button" class="btn btn--gold card__add" data-add="${p.id}">Adicionar ao carrinho</button>
+       <a class="card__buynow" href="${waLink(buyMsg)}" target="_blank" rel="noopener">Comprar agora</a>`;
 
   return `
-    <article class="card reveal" data-id="${p.id}" data-categoria="${p.categoria}">
+    <article class="card reveal${esgotado ? " card--esgotado" : ""}" data-id="${p.id}" data-categoria="${p.categoria}" data-busca="${busca}">
       <button type="button" class="card__media" data-qv="${p.id}" aria-label="Ver detalhes de ${nome}">
         <img src="${escapeHtml(p.imagem)}" alt="${nome}" loading="lazy" />
-        ${selo}
+        ${tag}
       </button>
       <div class="card__body">
         <span class="card__category">${escapeHtml(categoryLabel(p.categoria))}</span>
         <h3 class="card__title"><button type="button" class="card__title-btn" data-qv="${p.id}">${nome}</button></h3>
         ${desc}
-        ${priceMarkup(p.preco, p.precoAntigo)}
+        ${priceMarkup(p.preco, p.precoPromocional)}
         <div class="card__actions">
-          <button type="button" class="btn btn--gold card__add" data-add="${p.id}">Adicionar ao carrinho</button>
-          <a class="card__buynow" href="${waLink(buyMsg)}" target="_blank" rel="noopener">Comprar agora</a>
+          ${acoes}
         </div>
       </div>
     </article>`;
@@ -128,6 +153,31 @@ function renderProducts(produtos) {
   grid.innerHTML = produtos.map(cardTemplate).join("");
   observeReveals();
   applyFilter(activeFilter);
+}
+
+/* ---------- Destaques (produtos marcados no painel) ---------- */
+function renderDestaques(produtos) {
+  const secao = document.getElementById("destaques");
+  const grid = document.getElementById("destaquesGrid");
+  if (!secao || !grid) return;
+
+  const destaques = produtos.filter((p) => p.destaque);
+  if (destaques.length === 0) {
+    secao.hidden = true;
+    grid.innerHTML = "";
+    return;
+  }
+
+  secao.hidden = false;
+  grid.innerHTML = destaques.map(cardTemplate).join("");
+  observeReveals();
+}
+
+/* ---------- Busca por nome ---------- */
+function renderSearch(produtos) {
+  const box = document.getElementById("searchBox");
+  if (!box) return;
+  box.hidden = produtos.length < MIN_PRODUTOS_PARA_BUSCA;
 }
 
 /* ---------- Filtro de categorias ---------- */
@@ -160,18 +210,33 @@ function renderFilters(produtos) {
 
 function applyFilter(categoria) {
   activeFilter = categoria;
+  applyCatalogFilters();
+}
+
+/* Aplica categoria + busca ao mesmo tempo */
+function applyCatalogFilters() {
   const cards = document.querySelectorAll("#productsGrid .card");
+  const termo = normalizeText(activeSearch).trim();
   let visible = 0;
+
   cards.forEach((card) => {
-    const show = categoria === "todos" || card.dataset.categoria === categoria;
+    const combinaCategoria = activeFilter === "todos" || card.dataset.categoria === activeFilter;
+    const combinaBusca = !termo || (card.dataset.busca || "").includes(termo);
+    const show = combinaCategoria && combinaBusca;
     card.classList.toggle("is-hidden", !show);
     if (show) visible += 1;
   });
+
   const empty = document.getElementById("productsEmpty");
-  if (empty) empty.hidden = visible !== 0 || cards.length === 0;
+  if (empty) {
+    empty.hidden = visible !== 0 || cards.length === 0;
+    empty.textContent = termo
+      ? `Nenhuma peça encontrada para “${activeSearch.trim()}”.`
+      : "Nenhum produto nesta categoria no momento.";
+  }
 
   document.querySelectorAll("#filters .filter-btn").forEach((btn) => {
-    btn.setAttribute("aria-pressed", String(btn.dataset.filter === categoria));
+    btn.setAttribute("aria-pressed", String(btn.dataset.filter === activeFilter));
   });
 }
 
@@ -213,9 +278,16 @@ function persistCart() {
 function addToCart(id, qty = 1) {
   const p = findProduct(id);
   if (!p) return;
+
+  // Peça esgotada não entra no carrinho nem vai para o WhatsApp.
+  if (!p.disponivel) {
+    showToast(`"${p.nome}" está esgotado no momento.`);
+    return;
+  }
+
   const item = CART.find((i) => i.id === id);
   if (item) item.qty += qty;
-  else CART.push({ id: p.id, nome: p.nome, preco: p.preco, imagem: p.imagem, qty });
+  else CART.push({ id: p.id, nome: p.nome, preco: p.precoFinal, imagem: p.imagem, qty });
   persistCart();
   showToast(`"${p.nome}" adicionado ao carrinho ✓`);
   pulseBadge();
@@ -353,12 +425,37 @@ function openQuickView(id) {
   document.getElementById("qvCategory").textContent = categoryLabel(p.categoria);
   document.getElementById("qvTitle").textContent = p.nome;
   document.getElementById("qvDesc").textContent = p.descricao || "";
-  document.getElementById("qvPrice").innerHTML = priceMarkup(p.preco, p.precoAntigo);
+  document.getElementById("qvPrice").innerHTML = priceMarkup(p.preco, p.precoPromocional);
 
   const tag = document.getElementById("qvTag");
-  if (p.selo) { tag.textContent = p.selo; tag.hidden = false; } else { tag.hidden = true; }
+  if (!p.disponivel) {
+    tag.textContent = "Esgotado";
+    tag.className = "card__tag card__tag--esgotado";
+    tag.hidden = false;
+  } else if (p.precoPromocional) {
+    tag.textContent = "Promoção";
+    tag.className = "card__tag card__tag--promo";
+    tag.hidden = false;
+  } else {
+    tag.hidden = true;
+  }
 
-  document.getElementById("qvBuyNow").href = waLink(`Quero comprar: ${p.nome} (R$ ${p.preco})`);
+  // Esgotado: sem botão de compra, nem carrinho nem WhatsApp.
+  const qvAdd = document.getElementById("qvAdd");
+  const qvBuyNow = document.getElementById("qvBuyNow");
+  if (p.disponivel) {
+    qvAdd.disabled = false;
+    qvAdd.textContent = "Adicionar ao carrinho";
+    qvAdd.className = "btn btn--gold btn--lg";
+    qvBuyNow.hidden = false;
+    qvBuyNow.href = waLink(`Quero comprar: ${p.nome} (R$ ${p.precoFinal})`);
+  } else {
+    qvAdd.disabled = true;
+    qvAdd.textContent = "Esgotado";
+    qvAdd.className = "btn btn--esgotado btn--lg";
+    qvBuyNow.hidden = true;
+    qvBuyNow.removeAttribute("href");
+  }
 
   const overlay = document.getElementById("qvOverlay");
   const modal = document.getElementById("qvModal");
@@ -400,21 +497,41 @@ function showToast(msg) {
 
 /* ---------- Liga os eventos do catálogo, filtro, carrinho e modal ---------- */
 function bindShopEvents() {
-  const grid = document.getElementById("productsGrid");
-  if (grid) {
-    grid.addEventListener("click", (e) => {
-      const addBtn = e.target.closest("[data-add]");
-      if (addBtn) { addToCart(addBtn.dataset.add); return; }
-      const qvBtn = e.target.closest("[data-qv]");
-      if (qvBtn) openQuickView(qvBtn.dataset.qv);
-    });
-  }
+  // Vale para a vitrine e para os destaques, mesmo quando os cards são recriados.
+  document.addEventListener("click", (e) => {
+    const addBtn = e.target.closest("[data-add]");
+    if (addBtn) { addToCart(addBtn.dataset.add); return; }
+    const qvBtn = e.target.closest("[data-qv]");
+    if (qvBtn) openQuickView(qvBtn.dataset.qv);
+  });
 
   const filters = document.getElementById("filters");
   if (filters) {
     filters.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-filter]");
       if (btn) applyFilter(btn.dataset.filter);
+    });
+  }
+
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      activeSearch = searchInput.value || "";
+      applyCatalogFilters();
+    });
+    // "Buscar" do teclado do celular apenas fecha o teclado.
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); searchInput.blur(); }
+    });
+  }
+
+  const searchClear = document.getElementById("searchClear");
+  if (searchClear && searchInput) {
+    searchClear.addEventListener("click", () => {
+      searchInput.value = "";
+      activeSearch = "";
+      applyCatalogFilters();
+      searchInput.focus();
     });
   }
 
@@ -566,7 +683,9 @@ async function loadData() {
     CURRENT_PRODUCTS = normalizeProducts(DEFAULT_PRODUCTS);
   }
 
+  renderDestaques(CURRENT_PRODUCTS);
   renderFilters(CURRENT_PRODUCTS);
+  renderSearch(CURRENT_PRODUCTS);
   renderProducts(CURRENT_PRODUCTS);
 }
 
