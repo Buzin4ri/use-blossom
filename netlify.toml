@@ -1,0 +1,19 @@
+# =========================================================
+# USE BLOSSOM — Configuração de publicação na Netlify
+# ---------------------------------------------------------
+# O site continua sendo um site estático simples (HTML/CSS/JS),
+# sem framework e sem dependências para instalar.
+#
+# O único passo automático é juntar as fichas de produto da pasta
+# "produtos/" (salvas pelo painel /admin) no arquivo "products.json",
+# que é o arquivo que o site lê para montar o catálogo.
+#
+# Se esse passo falhar por qualquer motivo, ele NÃO derruba a
+# publicação: o site continua no ar com o catálogo anterior.
+# =========================================================
+
+[build]
+  # O "|| echo" garante que a publicação continue mesmo que este passo falhe.
+  # Nesse caso o site vai ao ar com o products.json que já está no repositório.
+  command = "node tools/build-produtos.js || echo 'AVISO: catalogo nao regenerado; usando o products.json do repositorio'"
+  publish = "."
