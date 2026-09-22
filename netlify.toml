@@ -13,5 +13,7 @@
 # =========================================================
 
 [build]
-  command = "node tools/build-produtos.js"
+  # O "|| echo" garante que a publicação continue mesmo que este passo falhe.
+  # Nesse caso o site vai ao ar com o products.json que já está no repositório.
+  command = "node tools/build-produtos.js || echo 'AVISO: catalogo nao regenerado; usando o products.json do repositorio'"
   publish = "."
