@@ -30,7 +30,18 @@ collections:
             summary: "{{fields.nome}} — R$ {{fields.preco}}"
             fields:
               - { name: "nome", label: "Nome do produto", widget: "string" }
+              - name: "categoria"
+                label: "Categoria"
+                widget: "select"
+                default: "aneis"
+                options:
+                  - { label: "Brincos", value: "brincos" }
+                  - { label: "Colares", value: "colares" }
+                  - { label: "Anéis", value: "aneis" }
+                  - { label: "Pulseiras", value: "pulseiras" }
+                  - { label: "Piercings", value: "piercings" }
               - { name: "preco", label: "Preço (ex: 89,90)", widget: "string", hint: "Use vírgula. Não escreva R$." }
+              - { name: "precoAntigo", label: "Preço antigo (opcional)", widget: "string", required: false, hint: "Preencha só se este produto estiver em promoção. Ex: 99,90. Deixe vazio se não houver desconto." }
               - { name: "descricao", label: "Descrição curta", widget: "text" }
               - { name: "imagem", label: "Foto do produto", widget: "image" }
               - { name: "selo", label: "Selo (ex: Novidade, Mais vendido)", widget: "string", required: false, hint: "Opcional. Deixe vazio para não mostrar selo." }
